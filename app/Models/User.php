@@ -19,7 +19,11 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name',
+        'prenoms',
         'email',
+        'phone',
+        'specialite',
+        'niveau_etude',
         'password',
     ];
 
@@ -41,4 +45,9 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function etudiant()
+    {
+        return $this->hasManyThrough(Etudiant::class, Groupe::class);
+    }
 }
